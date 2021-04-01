@@ -1,5 +1,5 @@
 module.exports = async (req, resp) => {
-  const { id } = req.params
+  	const { id } = req.params
 	//const user = find(id)
-	resp.send(`user com id ${id}`)
+	resp.send({message: `user com id ${id}`})
 };
