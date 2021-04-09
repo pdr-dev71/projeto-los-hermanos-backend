@@ -1,26 +1,13 @@
-const User = require('../../database/models/User')
-module.exports = async (req, resp) => {
-  const body = req.body
-  const { email, password, name } = body;
-  //validar valores
-  const createData = {
-    email,
-    password,
-    name,
-    rule: 'USER'
-  }
+const {Users} = require('../../database/models/')
+module.exports = async (userData) => {
   try {
-    const user = await User.create(createData)
-    if(user) resp.json({
-      user: user.dataValues.id,
-      message: 'sucesso ao criar user'
-    })
+    const user = await Users.create(userData)
+    if(user) return user.id
+    else throw {message: 'Houve um erro ao salvar no banco de dados', code: 500}
   }
   catch(err){
-    resp.send({
-      err,
-      message: 'erro ao cadastrar usuário'
-    })
+    console.log(err)
+    if (err.code) throw err;
+    throw {message: 'Erro', code: 500}
   }
-	resp.json({email, password})
 };

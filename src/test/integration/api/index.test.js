@@ -1,5 +1,6 @@
 const request = require('supertest');
-require('dotenv').config({path: '../../../.test.env'})
+require('dotenv-flow').config()
+
 const config = require('../../../database/config/config');
 const app = require('../../../server')
 

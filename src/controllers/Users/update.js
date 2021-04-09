@@ -1,5 +1,19 @@
-module.exports = async (req, res) => {
-    const { id } = req.params;
-    const { body: data } = req;
-    res.send({message: `User with id ${id} has been updated to ${JSON.stringify(data, null, 4)}`})
+const {Users} = require('../../database/models/')
+
+module.exports = async (id, data) => {
+    try {
+        const [result] = await Users.update(data, {where: {id: id}})
+        console.log(result);
+        if (result > 0) {
+            const user = await Users.findByPk(id);
+            return user;
+        } else {
+            throw {message: "Usuário não encontrado", code: 404}
+        }
+        
+    } catch (error) {
+        console.log(error);
+        if (error.code) throw error;
+        throw {message: error, code: 500}
+    }
 }
