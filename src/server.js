@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+require('./database')
+
 require('dotenv').config();
 
 app.get('/', (req, res) => {
