@@ -1,6 +1,6 @@
 const request = require('supertest');
 require('dotenv-flow').config()
-const app = require('../../../server')
+const app = require('../../../app')
 const sequelize = require('../../../database/models');
 
 const API_USERS = "/users";
