@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "NODE_ENV=test jest --verbose"
+    "test": "SET NODE_ENV=test jest --verbose"
   },
   "repository": {
     "type": "git",

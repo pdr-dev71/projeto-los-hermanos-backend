@@ -1,12 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 const basename = path.basename(__filename)
+const config = require('../config')
 const Sequelize = require('sequelize')
-const sequelizeConfig = require('../config/config')
+const sequelize = new Sequelize(config)
 
 const db = {}
-
-const sequelize = new Sequelize(sequelizeConfig);
 
 fs
   .readdirSync(__dirname)
