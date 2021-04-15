@@ -4,8 +4,10 @@
   "description": "Criação do backend da aplicação Mural Virtual, da equipe Los_Hermanos, do Instituto Federal do Piauí",
   "main": "index.js",
   "scripts": {
+    "migrate": "npx sequelize db:migrate",
     "dev": "nodemon server.js",
-    "test": "SET NODE_ENV=test jest --verbose"
+    "testWindows": "SET NODE_ENV=test&&jest --verbose",
+    "testLinux": "NODE_ENV=test jest --verbose"
   },
   "repository": {
     "type": "git",
