@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  pgsql:
+  mural_online:
     image: postgres:alpine
     ports:
       - '5432:5432'
-    container_name: 'pgsql'
+    container_name: 'mural_online'
     restart: always
     volumes:
       - pg-data:/var/lib/postgresql/data
