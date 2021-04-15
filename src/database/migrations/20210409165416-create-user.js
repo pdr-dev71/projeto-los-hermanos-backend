@@ -1,65 +1,78 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    return await queryInterface.createTable('users', {
-        firstName: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
+    up: async (queryInterface, Sequelize) => {
+        return await queryInterface.createTable('Users', {
+            id: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
+                allowNull: false,
+            },
+            firstName: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            lastName: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            password: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            birthDate: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            phone: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            email: {
+                type: Sequelize.STRING,
+                unique: false,
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                }
+            },
+            type: {
+                type: Sequelize.ENUM,
+                values: ['user', 'admin'],
+                defaultValue: 'user'
+            },
+            createdAt: {
+                type: Sequelize.DATE,
+                allowNull: false,
+            },
+            updatedAt: {
+                type: Sequelize.DATE,
+                allowNull: false,
             }
-        },
-        lastName: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        password: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        birthDate: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        phone: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        email: {
-            type: Sequelize.DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
-        type: {
-            type: Sequelize.DataTypes.ENUM,
-            values: ['user', 'admin'],
-            defaultValue: 'user'
-        }
         })
     },
-
-  down: async (queryInterface, Sequelize) => {
-    return await queryInterface.dropTable('users')
-  }
+    down: async (queryInterface, Sequelize) => {
+        return await queryInterface.dropTable('Users')
+    }
 };

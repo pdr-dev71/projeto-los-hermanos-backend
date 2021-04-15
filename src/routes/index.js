@@ -1,6 +1,6 @@
 var router = require('express').Router();
 
-router.use('/users', require('./Users'))
+router.use('/users', require('./user'))
 
 router.use('/*', function (req, res) {
   res
