@@ -1,5 +1,5 @@
 module.exports = {
-  host: "pgsql",
+  host: "localhost",
   username: "pguser",
   password: "pgpassword",
   database: "mural_online_test",
@@ -8,7 +8,5 @@ module.exports = {
   logging: false,
   define: {
     timestamps: true,
-    underscored: true,
-    underscoredAll: true
   }
 }
