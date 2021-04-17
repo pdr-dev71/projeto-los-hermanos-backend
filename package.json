@@ -7,7 +7,7 @@
     "migrate": "npx sequelize db:migrate",
     "dev": "nodemon server.js",
     "setEnv":  "export NODE_ENV=test || SET \"NODE_ENV=test\"",
-    "test": "npm run setEnv && jest --verbose"
+    "test": "npm run setEnv && jest --verbose --runInBand"
   },
   "repository": {
     "type": "git",
