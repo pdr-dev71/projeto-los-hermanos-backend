@@ -6,8 +6,8 @@
   "scripts": {
     "migrate": "npx sequelize db:migrate",
     "dev": "nodemon server.js",
-    "testWindows": "SET NODE_ENV=test&&jest --verbose",
-    "testLinux": "NODE_ENV=test jest --verbose"
+    "setEnv":  "export NODE_ENV=test || SET \"NODE_ENV=test\"",
+    "test": "npm run setEnv && jest --verbose"
   },
   "repository": {
     "type": "git",

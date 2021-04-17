@@ -4,8 +4,8 @@ const userCreateValidation = require('../validators/Users/create');
 const userUpdateValidation = require('../validators/Users/update')
 const validate = require('../validators');
 const { Users } = require('../database/models')
-const userServiceClass = require('../services/User.service')
-const userService = new userServiceClass(Users)
+const UserService = require('../services/User.service')
+const userService = new UserService(Users)
 
 router.get('/', async (req, res) => {
     try {

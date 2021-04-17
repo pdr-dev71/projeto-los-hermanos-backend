@@ -5,7 +5,7 @@ const app = express()
 require('dotenv').config();
 
 app.get('/', (req, res) => {
-  res.send('TATAKAE FAMILIA')
+  res.status(200).send('TATAKAE FAMILIA')
 })
 
 app.use(express.json())
