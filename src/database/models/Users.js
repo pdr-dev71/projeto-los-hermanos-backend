@@ -1,5 +1,5 @@
 const Users = (sequelize, DataTypes) => {
-    return sequelize.define('Users', {
+    const user = sequelize.define('Users', {
         firstName: {
             type: DataTypes.STRING,
             unique: false,
@@ -53,7 +53,11 @@ const Users = (sequelize, DataTypes) => {
             values: ['user', 'admin'],
             defaultValue: 'user'
         }
-    });
+    }, {});
+    user.associate = models => {
+        user.hasMany(models.Notices, { as: 'noticesPublisheds' })
+    }
+    return user
 }
 
 module.exports = Users;
