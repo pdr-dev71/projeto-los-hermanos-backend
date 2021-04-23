@@ -1,0 +1,24 @@
+name: run-tests
+on: 
+  push:
+    branches: [develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Raises the database docker container
+      run: docker-compose up -d
+      - name: Ensure docker is up
+      uses: jakejarvis/wait-action@master
+      with:
+        time: 60s
+      - name: Check running containers
+      run: docker ps
+      - name: Run test suite
+      run: npm run test
