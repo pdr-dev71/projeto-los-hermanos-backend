@@ -14,10 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Raises the database docker container
       - run: docker-compose up -d
+
       - name: Ensure docker is up
       - uses: jakejarvis/wait-action@master
       - with:
-        time: 60s
+      - time: 60s
+      
       - name: Check running containers
       - run: docker ps
       - name: Run test suite
