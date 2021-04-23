@@ -13,12 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Raises the database docker container
-      run: docker-compose up -d
+      - run: docker-compose up -d
       - name: Ensure docker is up
-      uses: jakejarvis/wait-action@master
-      with:
+      - uses: jakejarvis/wait-action@master
+      - with:
         time: 60s
       - name: Check running containers
-      run: docker ps
+      - run: docker ps
       - name: Run test suite
-      run: npm run test
+      - run: npm run test
