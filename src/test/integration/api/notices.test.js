@@ -24,18 +24,21 @@ afterAll(async ()=>{
 })
 describe('Test the crud from posts', ()=>{
   test('It have register a new post by user', async()=>{
+    const allUsers = await(await request(app).get('/users')).body;
+    const userId = allUsers[0].id;
     const newNotice = {
+      userId,
       title: 'Refeitario imterditado', //errei de propósito não fique com raiva
       description: 'refeitório está interditado para pintura das paredes e manutenção dos ar condicionados'
-    } 
-    const getUserId = 1
-    const response = await request(app).post(`${API_NOTICE}/${getUserId}`).send(newNotice);
-    expect(response.statusCode).toBe(200)
+    }
+    const response = await request(app).post(API_NOTICE).send(newNotice);
+    expect(response.statusCode).toBe(201)
   })
   test('It have get all notices', async () => {
     const response = await request(app).get(API_NOTICE)
+    const notices = response.body
     expect(response.statusCode).toBe(200)
-    expect(response.length).toBe(1) 
+    expect(notices.length).toBe(1) 
   })
   test('It have get one especific notice', async () => {
     const getNoticeId = 1
@@ -47,7 +50,7 @@ describe('Test the crud from posts', ()=>{
     const updateBody = {
       title: 'Refeitório Interditado'
     }
-    const response = await request(app).post(`${API_NOTICE}/${getNoticeId}`).send(updateBody)
+    const response = await request(app).put(`${API_NOTICE}/${getNoticeId}`).send(updateBody)
     expect(response.statusCode).toBe(200)
   })
   test('It have delete one especific notice', async () => {

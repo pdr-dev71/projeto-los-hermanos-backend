@@ -1,58 +1,21 @@
 const Notices = (sequelize, DataTypes) => {
   const notice = sequelize.define('Notices', {
-      firstName: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull:  false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
-      lastName: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
-      password: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
-      birthDate: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
-      },
-      phone: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
-      },
-      email: {
-          type: DataTypes.STRING,
-          unique: false,
-          allowNull: false,
-          validate: {
-              notEmpty: true
-          }
-      },
-      type: {
-          type: DataTypes.ENUM,
-          values: ['user', 'admin'],
-          defaultValue: 'user'
-      }
   }, {});
   notice.associate = models => {
       notice.belongsTo(models.Notices, { foreignKey: 'userId', as: 'user' })
