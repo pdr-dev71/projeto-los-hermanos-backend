@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
     try {
         const data = req.body;
         const valid = await validate(userCreateValidation, data);
-        console.log(valid);
         if (valid) return res.status(201).json(await userService.create(data));
         else return res.status(400).json({message: "Invalid data"});
     } catch (error) {

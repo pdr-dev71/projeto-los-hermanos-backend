@@ -31,7 +31,7 @@ class UserService {
   async create(userData){
     try {
       const user = await this.Model.create(userData)
-      if(user) return user.id
+      if(user) return user.dataValues.id
       else throw {message: 'Houve um erro ao salvar no banco de dados', code: 500}
     }
     catch(err){
