@@ -17,7 +17,7 @@ const newUser = {
 
 beforeAll(async ()=>{
   await sequelize.sequelize.sync({ force:true })
-  await request(app).post('/users').send(newUser);
+  await request(app).post('/auth/signup').send(newUser);
 })
 afterAll(async ()=>{
   await sequelize.sequelize.close()
