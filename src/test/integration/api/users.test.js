@@ -17,7 +17,7 @@ const DEFAULT_USER = {
 
 beforeAll(async () => {
     await sequelize.sequelize.sync({force: true});
-    await request(app).post(API_USERS).send(DEFAULT_USER);
+    await request(app).post('/auth/signup').send(DEFAULT_USER);
 });
 
 afterAll(async () => {
@@ -25,39 +25,12 @@ afterAll(async () => {
 });
 
 describe('Test the Users path', () => {
-    test('it should add new user', async () => {
-        const newUser = {
-            firstName: "Test",
-            lastName: "User",
-            password: "testpassword",
-            birthDate: "01/01/2021",
-            phone: "0000000000",
-            email: "test@test.com",
-            type: "user"
-        }
-        const response = await request(app).post(API_USERS).send(newUser);
-        expect(response.statusCode).toBe(201)
-    });
-
-    test('it should fail if new user data is invalid', async () => {
-        const newUser = {
-            firstName: "Test",
-            lastName: "User",
-            password: "testpassword",
-            birthDate: "01/01/2021",
-            phone: "0000000000",
-            email: "test",
-            type: "user"
-        }
-        const response = await request(app).post(API_USERS).send(newUser);
-        expect(response.statusCode).toBe(400)
-    });
 
     test('it should get all users', async () => {
         const response = await request(app).get(API_USERS);
         const users = response.body;
         expect(response.statusCode).toBe(200);
-        expect(users.length).toBe(2);
+        expect(users.length).toBe(1);
     });
 
     test('it should get one user alone', async () => {
@@ -98,7 +71,7 @@ describe('Test the Users path', () => {
         const response = await request(app).delete(`${API_USERS}/${deleteUserId}`);
         expect(response.statusCode).toBe(200);
         allUsers = await (await request(app).get(API_USERS)).body;
-        expect(allUsers.length).toBe(1);
+        expect(allUsers.length).toBe(0);
     })
 
     test('it should fail to delete user with invalid id', async () => {

@@ -28,18 +28,6 @@ class UserService {
       throw {message: 'Erro', code: 500}
     }
   }
-  async create(userData){
-    try {
-      const user = await this.Model.create(userData)
-      if(user) return user.dataValues.id
-      else throw {message: 'Houve um erro ao salvar no banco de dados', code: 500}
-    }
-    catch(err){
-      console.log(err)
-      if (err.code) throw err;
-      throw {message: 'Erro', code: 500}
-    }
-  }
   async update(id, data){
     try {
       const [result] = await this.Model.update(data, {where: { id }})

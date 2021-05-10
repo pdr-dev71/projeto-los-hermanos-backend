@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const userCreateValidation = require('../validators/Users/create');
 const userUpdateValidation = require('../validators/Users/update')
 const validate = require('../validators');
 const { Users } = require('../database/models')
@@ -24,17 +23,6 @@ router.get('/:id', async (req, res) => {
         return res.status(error.code).json(error.message);
     }
     
-})
-router.post('/', async (req, res) => {
-    try {
-        const data = req.body;
-        const valid = await validate(userCreateValidation, data);
-        if (valid) return res.status(201).json(await userService.create(data));
-        else return res.status(400).json({message: "Invalid data"});
-    } catch (error) {
-        console.log(error)
-        return res.status(error.code).json(error.message);
-    }
 })
 router.put('/:id', async (req, res) => {
     try {
