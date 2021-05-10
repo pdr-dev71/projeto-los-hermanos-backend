@@ -15,11 +15,8 @@ async function validate(data) {
         console.log(valid)
         return valid
     } catch(error) {
-        console.log('não é valido')
         throw error;
     }
-
-    
 };
 
 module.exports = validate;

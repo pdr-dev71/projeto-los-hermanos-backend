@@ -2,7 +2,7 @@ var router = require('express').Router();
 
 router.use('/users', require('./user'))
 router.use('/notices', require('./notices'))
-router.use('/session', require('./session'))
+router.use('/auth', require('./auth'))
 
 router.use('/*', function (req, res) {
   res
