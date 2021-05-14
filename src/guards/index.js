@@ -31,7 +31,7 @@ module.exports = {
           message: `Fail to Authentication. Error -> ${error}`
         })
       }
-      if(decoded.type !== 'ADMIN'){
+      if(decoded.type !== 'admin'){
         return res.status(403).send({
           auth: false, message: 'User without permission.'
         })

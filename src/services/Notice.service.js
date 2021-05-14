@@ -20,24 +20,22 @@ class NoticeService {
   async getAll(){
     try {
       let notices = await this.Model.findAll();
-          notices = notices.map((notice) => notice.toJSON())
+      notices = notices.map((notice) => notice.toJSON())
       return notices;
     }
     catch(error){
       console.error(error);
-      throw {message: 'Erro', code: 500}
+      throw {message: error.message, code: 500}
     }
   }
   async create(noticeData){
     try {
       const notice = await this.Model.create(noticeData)
-      if(notice) return { id: notice.dataValues.id }
-      else throw {message: 'Houve um erro ao salvar no banco de dados', code: 500}
+      return { id: notice.dataValues.id }
     }
     catch(err){
-      console.log(err)
       if (err.code) throw err;
-      throw {message: 'Erro', code: 500}
+      throw { message: 'Erro', code: 500 }
     }
   }
   async update(id, data){

@@ -1,23 +1,23 @@
 const { Notices, Users } = require('../database/models')
 const router = require('express').Router()
-const NoticeService = require('../services/User.service')
+const NoticeService = require('../services/Notice.service')
 const noticeService = new NoticeService(Notices)
 
 router.get('/', async (req, res) => {
   try {
-      return res.send(await noticeService.getAll())
+    return res.send(await noticeService.getAll())
   } catch(error) {
-      console.log(error)
-      return res.status(error.code).json(error.message);
+    console.error(error)
+    return res.status(error.code).json(error.message);
   }
 })
 router.get('/:id', async (req, res) => {
   const { id } = req.params
   try {
-      return res.send(await noticeService.get(id))
+    return res.send(await noticeService.get(id))
   } catch(error) {
-      console.log(error)
-      return res.status(error.code).json(error.message);
+    console.log(error)
+    return res.status(error.code).json(error.message);
   }
 })
 router.post('/', async (req, res) => {
@@ -25,10 +25,10 @@ router.post('/', async (req, res) => {
   const user = await Users.findByPk(userId)
   if(!user) return res.status(404).send('user not found')
   try {
-    return res.status(201).json(await noticeService.create(req.body));
+    return res.json(await noticeService.create(req.body));
   }
   catch(error){
-    console.log(error)
+    console.error(error)
     return res.status(error.code).json(error.message);
   }
 })

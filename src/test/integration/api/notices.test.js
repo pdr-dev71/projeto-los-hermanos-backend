@@ -17,22 +17,27 @@ const newUser = {
 
 beforeAll(async ()=>{
   await sequelize.sequelize.sync({ force:true })
-  await request(app).post('/auth/signup').send(newUser);
 })
 afterAll(async ()=>{
   await sequelize.sequelize.close()
 })
 describe('Test the crud from posts', ()=>{
+  test('It have get all notices', async () => {
+    const response = await request(app).get(API_NOTICE)
+    const notices = response.body
+    expect(response.statusCode).toBe(200)
+    expect(notices.length).toBe(0)
+  })
   test('It have register a new post by user', async()=>{
-    const allUsers = await(await request(app).get('/users')).body;
-    const userId = allUsers[0].id;
+    const resp = await request(app).post('/auth/signup').send(newUser);
+    const userId = resp.body.id;
     const newNotice = {
       userId,
       title: 'Refeitario imterditado', //errei de propósito não fique com raiva
       description: 'refeitório está interditado para pintura das paredes e manutenção dos ar condicionados'
     }
     const response = await request(app).post(API_NOTICE).send(newNotice);
-    expect(response.statusCode).toBe(201)
+    expect(response.statusCode).toBe(200)
   })
   test('It have get all notices', async () => {
     const response = await request(app).get(API_NOTICE)
