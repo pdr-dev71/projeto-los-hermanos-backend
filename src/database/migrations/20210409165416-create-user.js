@@ -44,10 +44,7 @@ module.exports = {
             phone: {
                 type: Sequelize.STRING,
                 unique: false,
-                allowNull: false,
-                validate: {
-                    notEmpty: true
-                }
+                allowNull: true
             },
             email: {
                 type: Sequelize.STRING,
@@ -58,6 +55,7 @@ module.exports = {
                 }
             },
             type: {
+                allowNull: false,
                 type: Sequelize.ENUM,
                 values: ['user', 'admin'],
                 defaultValue: 'user'

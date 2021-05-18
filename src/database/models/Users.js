@@ -35,10 +35,7 @@ const Users = (sequelize, DataTypes) => {
         phone: {
             type: DataTypes.STRING,
             unique: false,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            allowNull: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -49,6 +46,7 @@ const Users = (sequelize, DataTypes) => {
             }
         },
         type: {
+            allowNull: false,
             type: DataTypes.ENUM,
             values: ['user', 'admin'],
             defaultValue: 'user'
