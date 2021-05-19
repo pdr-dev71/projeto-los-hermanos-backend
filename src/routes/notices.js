@@ -20,6 +20,15 @@ router.get('/:id', async (req, res) => {
     return res.status(error.code).json(error.message);
   }
 })
+router.get('/getByUser/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    return res.send(await noticeService.getByUser(id))
+  } catch(error) {
+    console.log(error)
+    return res.status(error.code).json(error.message);
+  }
+})
 router.post('/', async (req, res) => {
   const { userId } = req.body
   const user = await Users.findByPk(userId)

@@ -5,7 +5,7 @@ async function validate(data) {
         lastName: yup.string().required(),
         password: yup.string().required(),
         birthDate: yup.string().required(),
-        phone: yup.string().required(),
+        phone: yup.string(),
         email: yup.string().email().required(),
         type: yup.string().required()
     });

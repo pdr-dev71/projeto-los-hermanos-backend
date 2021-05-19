@@ -17,6 +17,19 @@ class NoticeService {
       throw {message: 'Erro', code: 500}
     }
   }
+  async getByUser(userId){
+    try {
+      let notices = await this.Model.findAll({
+        where: { userId }
+      });
+      notices = notices.map((notice) => notice.toJSON())
+      return notices;
+    }
+    catch(error){
+      console.error(error);
+      throw {message: error.message, code: 500}
+    }
+  }
   async getAll(){
     try {
       let notices = await this.Model.findAll();
